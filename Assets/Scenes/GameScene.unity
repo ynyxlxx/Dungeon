@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108387025}
   - component: {fileID: 108387024}
+  - component: {fileID: 108387026}
   m_Layer: 0
   m_Name: Tile (1)
   m_TagString: Untagged
@@ -191,6 +192,32 @@ Transform:
   m_Father: {fileID: 1719414216}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &108387026
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108387023}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.58, y: 3.56}
+    newSize: {x: 3.58, y: 3.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.58, y: 3.56}
+  m_EdgeRadius: 0
 --- !u!1 &254481691
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744242288}
   - component: {fileID: 744242287}
+  - component: {fileID: 744242289}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -446,6 +474,32 @@ Transform:
   m_Father: {fileID: 1719414216}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &744242289
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744242286}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.58, y: 3.56}
+    newSize: {x: 3.58, y: 3.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.58, y: 3.56}
+  m_EdgeRadius: 0
 --- !u!1 &778546730
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778546732}
   - component: {fileID: 778546731}
+  - component: {fileID: 778546733}
   m_Layer: 0
   m_Name: Tile (2)
   m_TagString: Untagged
@@ -525,6 +580,32 @@ Transform:
   m_Father: {fileID: 1719414216}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!61 &778546733
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778546730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.58, y: 3.56}
+    newSize: {x: 3.58, y: 3.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.58, y: 3.56}
+  m_EdgeRadius: 0
 --- !u!1 &818425711
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +700,49 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   levelGeneration: {fileID: 1455645156}
+--- !u!1 &1088921122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088921124}
+  - component: {fileID: 1088921123}
+  m_Layer: 0
+  m_Name: RandomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1088921123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088921122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95735e34a399ca34580eeb249697157a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1088921124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088921122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9354265, y: 0.09855409, z: -0.26953125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093636239
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1405815108}
   - component: {fileID: 1405815107}
+  - component: {fileID: 1405815109}
   m_Layer: 0
   m_Name: Tile (3)
   m_TagString: Untagged
@@ -932,6 +1057,32 @@ Transform:
   m_Father: {fileID: 1719414216}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!61 &1405815109
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405815106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.58, y: 3.56}
+    newSize: {x: 3.58, y: 3.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.58, y: 3.56}
+  m_EdgeRadius: 0
 --- !u!1 &1438568528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,8 +1177,14 @@ MonoBehaviour:
   - type: 3
     prefabs: {fileID: 6828262895663855453, guid: e9386544d4671ad43866ad42a3627f18,
       type: 3}
+  - type: 4
+    prefabs: {fileID: 3700318749282450624, guid: 74ca7375a4ff1e64a8fe33b5b9cb198d,
+      type: 3}
+  - type: 5
+    prefabs: {fileID: 9212816696085321105, guid: 39d00ed308a8bd748b41a55eecb6eec6,
+      type: 3}
   moveIncrement: 10
-  roomGenTimeInterval: 3
+  roomGenTimeInterval: 0.25
   roomMask:
     serializedVersion: 2
     m_Bits: 256

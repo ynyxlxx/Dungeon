@@ -6,7 +6,8 @@ public class SpawnObject : MonoBehaviour {
     public GameObject[] objects;
 
     private void Start () {
-        int rand = Random.Range (0, objects.Length);
+        int rand = RandomManager.instance.GetRandomNumberBtw (0, objects.Length - 1);
+        // int rand = Random.Range (0, objects.Length);
         GameObject instance = Instantiate (objects[rand], transform.position, Quaternion.identity) as GameObject;
         instance.transform.parent = this.transform;
     }

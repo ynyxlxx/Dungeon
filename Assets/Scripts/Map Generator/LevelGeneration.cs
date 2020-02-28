@@ -24,22 +24,33 @@ public class LevelGeneration : MonoBehaviour {
 
     private float downCounter = 0;
 
+    private Vector2 startRoomPos;
+    private Vector2 endRoomPos;
+    private bool startEndRoomGenerated = false;
+
     private void Start () {
 
         int randStartingPos = Random.Range (0, startingPositions.Length);
         transform.position = startingPositions[randStartingPos].position;
         Instantiate (rooms[0].prefabs, transform.position, Quaternion.identity);
+        startRoomPos = transform.position;
 
         nextMoveDirection = GetRandomNumberBtw (1, 5);
     }
 
     private void Update () {
-        if (roomGenTimer <= roomGenTimeInterval && stopGen == false) {
+        if (roomGenTimer >= roomGenTimeInterval && stopGen == false) {
             MoveGenerationPoint ();
-            roomGenTimer += Time.deltaTime;
-        } else {
             roomGenTimer = 0f;
+        } else {
+            roomGenTimer += Time.deltaTime;
         }
+
+        if (startEndRoomGenerated == false && stopGen == true) {
+            startEndRoomGenerated = true;
+            GenerateStartEndRoom ();
+        }
+
     }
 
     // 0 -> LR, 1 -> LRB, 2 -> LRT, 3 -> LRTB
@@ -112,10 +123,21 @@ public class LevelGeneration : MonoBehaviour {
 
                 nextMoveDirection = GetRandomNumberBtw (1, 5);
             } else {
+                endRoomPos = transform.position;
                 stopGen = true;
             }
         }
-        // Instantiate (rooms[0].prefabs, transform.position, Quaternion.identity);
+    }
+
+    private void GenerateStartEndRoom () {
+        Collider2D roomDetection = Physics2D.OverlapCircle (startRoomPos, 1, roomMask);
+        roomDetection.GetComponent<RoomType> ().RoomDestruction ();
+
+        roomDetection = Physics2D.OverlapCircle (endRoomPos, 1, roomMask);
+        roomDetection.GetComponent<RoomType> ().RoomDestruction ();
+
+        Instantiate (rooms[4].prefabs, startRoomPos, Quaternion.identity);
+        Instantiate (rooms[5].prefabs, endRoomPos, Quaternion.identity);
     }
 
     private int GetRandomNumberBtw (int a, int b) {
