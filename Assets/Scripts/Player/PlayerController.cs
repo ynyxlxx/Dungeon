@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour {
     public int extraJumpTimes;
     private int extraJumpCounter;
 
+    private bool isClimbing;
+    public Transform climbCheck;
+    private float climbCheckRadius = 0.1f;
+
     private void Start () {
         rb = GetComponent<Rigidbody2D> ();
         extraJumpCounter = extraJumpTimes;
@@ -26,6 +30,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Update () {
         if (isGrounded) {
+            extraJumpCounter = extraJumpTimes;
+        }
+
+        if (isGrounded == false && isClimbing == true) {
             extraJumpCounter = extraJumpTimes;
         }
 
@@ -40,6 +48,7 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate () {
 
         isGrounded = Physics2D.OverlapCircle (groundCheck.position, checkRadius, whatIsGround);
+        isClimbing = Physics2D.OverlapCircle (climbCheck.position, climbCheckRadius, whatIsGround);
 
         moveInput = Input.GetAxisRaw ("Horizontal");
         rb.velocity = new Vector2 (moveInput * speed, rb.velocity.y);
@@ -48,6 +57,13 @@ public class PlayerController : MonoBehaviour {
             Flip ();
         } else if (facingRight == true && moveInput < 0) {
             Flip ();
+        }
+    }
+
+    private void OnTriggerStay2D (Collider2D other) {
+        if (other.tag == "End Point") {
+            if (Input.GetKeyDown (KeyCode.E))
+                GameManager.instance.EnterNextLevel ();
         }
     }
 
