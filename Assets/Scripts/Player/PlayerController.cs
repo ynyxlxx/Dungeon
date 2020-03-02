@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         } else if (Input.GetKeyDown (KeyCode.Space) && extraJumpCounter == 0 && isGrounded) {
             rb.velocity = Vector2.up * jumpForce;
         }
+
     }
 
     private void FixedUpdate () {
@@ -50,14 +51,14 @@ public class PlayerController : MonoBehaviour {
         isGrounded = Physics2D.OverlapCircle (groundCheck.position, checkRadius, whatIsGround);
         isClimbing = Physics2D.OverlapCircle (climbCheck.position, climbCheckRadius, whatIsGround);
 
-        moveInput = Input.GetAxisRaw ("Horizontal");
-        rb.velocity = new Vector2 (moveInput * speed, rb.velocity.y);
-
         if (facingRight == false && moveInput > 0) {
             Flip ();
         } else if (facingRight == true && moveInput < 0) {
             Flip ();
         }
+
+        moveInput = Input.GetAxisRaw ("Horizontal");
+        rb.velocity = new Vector2 (moveInput * speed, rb.velocity.y);
     }
 
     private void OnTriggerStay2D (Collider2D other) {
