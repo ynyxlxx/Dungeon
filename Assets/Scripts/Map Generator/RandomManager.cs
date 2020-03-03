@@ -14,6 +14,8 @@ public class RandomManager : MonoBehaviour {
         } else if (instance != this) {
             Destroy (gameObject);
         }
+
+        DontDestroyOnLoad (this);
     }
 
     public int GetRandomNumberBtw (int a, int b) {

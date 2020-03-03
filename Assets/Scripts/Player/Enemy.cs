@@ -16,6 +16,7 @@ public class Enemy : LivingEntity {
 
     public Transform groundDetectionPoint;
     public Transform wallDetectionPoint;
+    public Transform eyeSightPoint;
 
     public LayerMask obstacleMask;
     public LayerMask targetMask;
@@ -29,14 +30,18 @@ public class Enemy : LivingEntity {
 
     public static event System.Action OnDeathStatic;
 
+    private BoxCollider2D attackCollider;
+
     private void Awake () {
         enemySprite = GetComponentInChildren<SpriteRenderer> ();
+        attackCollider = GetComponentInChildren<BoxCollider2D> ();
     }
 
     protected override void Start () {
         base.Start ();
 
         currentState = EnemyState.patrolling;
+        attackCollider.enabled = false;
 
         StartCoroutine (Patrolling ());
         StartCoroutine (FindingThePlayer ());
@@ -81,7 +86,7 @@ public class Enemy : LivingEntity {
             if (currentState == EnemyState.patrolling) {
                 //Debug.DrawLine (transform.position, new Vector3 (transform.position.x + viewRange, transform.position.y, transform.position.z), Color.red);
 
-                RaycastHit2D hitInfo = Physics2D.Raycast (transform.position, transform.right, viewRange, targetMask);
+                RaycastHit2D hitInfo = Physics2D.Raycast (eyeSightPoint.position, transform.right, viewRange, targetMask);
                 if (hitInfo.collider != null && hitInfo.collider.tag == "Player") {
                     playerPos = hitInfo.collider.transform.position;
                     if (attackTimer > attackInterval) {
@@ -101,18 +106,28 @@ public class Enemy : LivingEntity {
     }
 
     private IEnumerator AttackThePlayer () {
-        float percent = 0;
-        Vector2 oldPos = transform.position;
-        yield return new WaitForSeconds (0.5f);
-        while (percent < 1) {
-            percent += Time.deltaTime * attackSpeed;
-            float interpolation = Mathf.Pow (percent, 2) * 4f;
-            Vector2 targetPos = new Vector2 (playerPos.x, transform.position.y);
-            transform.position = Vector2.Lerp (oldPos, targetPos, interpolation);
-            enemySprite.color = Color.white;
-            yield return null;
+        if (currentState == EnemyState.attacking) {
+            float percent = 0;
+            attackCollider.enabled = true;
+            Vector2 oldPos = transform.position;
+            yield return new WaitForSeconds (0.5f);
+            while (percent < 1) {
+                percent += Time.deltaTime * attackSpeed;
+                float interpolation = Mathf.Pow (percent, 2) * 4f;
+                Vector2 targetPos = new Vector2 (playerPos.x, transform.position.y);
+                RaycastHit2D isReachable = Physics2D.Raycast (targetPos, Vector2.down, groundDetectionDistance, obstacleMask);
+                if (isReachable) {
+                    transform.position = Vector2.Lerp (oldPos, targetPos, interpolation);
+                }
+
+                currentState = EnemyState.patrolling;
+
+                enemySprite.color = Color.white;
+                yield return null;
+            }
+            currentState = EnemyState.patrolling;
+            attackCollider.enabled = false;
         }
-        currentState = EnemyState.patrolling;
     }
 
     public override void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection) {

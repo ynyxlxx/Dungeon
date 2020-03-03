@@ -42,7 +42,7 @@ public class EnemyWeapon : MonoBehaviour {
     private void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Player") {
             other.gameObject.GetComponent<Player> ().TakeHit (damage, other.transform.position, transform.right);
-            Debug.Log ("hit the player");
+            //Debug.Log (this + " hit the player");
         }
     }
 }
