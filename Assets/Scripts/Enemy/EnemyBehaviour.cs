@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : LivingEntity {
+public class EnemyBehaviour : MonoBehaviour {
     public enum EnemyState { patrolling, attacking, findThePlayer }
 
     public float patrolSpeed;
@@ -28,56 +28,56 @@ public class Enemy : LivingEntity {
     private SpriteRenderer enemySprite;
     private float attackTimer;
 
-    public static event System.Action OnDeathStatic;
+    private bool timeToTurnAround;
 
-    private BoxCollider2D attackCollider;
+    public BoxCollider2D attackCollider;
 
     private void Awake () {
         enemySprite = GetComponentInChildren<SpriteRenderer> ();
-        attackCollider = GetComponentInChildren<BoxCollider2D> ();
     }
 
-    protected override void Start () {
-        base.Start ();
-
+    private void Start () {
         currentState = EnemyState.patrolling;
         attackCollider.enabled = false;
 
         StartCoroutine (Patrolling ());
         StartCoroutine (FindingThePlayer ());
-
     }
 
     private IEnumerator Patrolling () {
         while (true) {
             if (currentState == EnemyState.patrolling) {
-                transform.Translate (patrolSpeed * Time.deltaTime * Vector2.right);
+                if (timeToTurnAround == false) {
+                    transform.Translate (patrolSpeed * Time.deltaTime * Vector2.right);
+                }
 
                 RaycastHit2D groundCheck = Physics2D.Raycast (groundDetectionPoint.position, Vector2.down, groundDetectionDistance, obstacleMask);
                 RaycastHit2D wallCheck = Physics2D.Raycast (wallDetectionPoint.position, transform.right, wallDetectionDistance, obstacleMask);
 
                 if (groundCheck.collider == false) {
-                    if (movingRight == true) {
-                        transform.eulerAngles = new Vector3 (0, -180, 0);
-                        movingRight = false;
-                    } else {
-                        transform.eulerAngles = new Vector3 (0, 0, 0);
-                        movingRight = true;
-                    }
+                    yield return StartCoroutine (TurnAround ());
                 }
 
                 if (wallCheck.collider == true) {
-                    if (movingRight == true) {
-                        transform.eulerAngles = new Vector3 (0, -180, 0);
-                        movingRight = false;
-                    } else {
-                        transform.eulerAngles = new Vector3 (0, 0, 0);
-                        movingRight = true;
-                    }
+                    yield return StartCoroutine (TurnAround ());
                 }
             }
             yield return null;
         }
+    }
+
+    private IEnumerator TurnAround () {
+        timeToTurnAround = true;
+        yield return new WaitForSeconds (0.5f);
+        if (movingRight == true) {
+            transform.eulerAngles = new Vector3 (0, -180, 0);
+            movingRight = false;
+        } else {
+            transform.eulerAngles = new Vector3 (0, 0, 0);
+            movingRight = true;
+        }
+        yield return new WaitForSeconds (0.5f);
+        timeToTurnAround = false;
     }
 
     private IEnumerator FindingThePlayer () {
@@ -110,7 +110,7 @@ public class Enemy : LivingEntity {
             float percent = 0;
             attackCollider.enabled = true;
             Vector2 oldPos = transform.position;
-            yield return new WaitForSeconds (0.5f);
+            yield return new WaitForSeconds (0.4f);
             while (percent < 1) {
                 percent += Time.deltaTime * attackSpeed;
                 float interpolation = Mathf.Pow (percent, 2) * 4f;
@@ -128,16 +128,5 @@ public class Enemy : LivingEntity {
             currentState = EnemyState.patrolling;
             attackCollider.enabled = false;
         }
-    }
-
-    public override void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection) {
-
-        if (damage >= health) {
-            if (OnDeathStatic != null) {
-                OnDeathStatic ();
-            }
-
-        }
-        base.TakeHit (damage, hitPoint, hitDirection);
     }
 }

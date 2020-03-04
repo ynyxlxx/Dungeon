@@ -39,8 +39,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3766449142871630176}
+  - component: {fileID: 61659876113521064}
   - component: {fileID: 297901201231924263}
-  m_Layer: 0
+  - component: {fileID: 114556067182315076}
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -62,6 +64,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61659876113521064
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893481037200247960}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.38}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.79, y: 2.66}
+    newSize: {x: 2.8, y: 2.66}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.45, y: 2.66}
+  m_EdgeRadius: 0
 --- !u!114 &297901201231924263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,10 +103,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+--- !u!114 &114556067182315076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893481037200247960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121190026718d184b8b186ec7a841ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   patrolSpeed: 1
   groundDetectionDistance: 1
   wallDetectionDistance: 0.2
-  viewRange: 1.5
+  viewRange: 0.8
   attackSpeed: 1.2
   attackInterval: 1.5
   groundDetectionPoint: {fileID: 8470437372544252284}
@@ -90,6 +130,7 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 1024
+  attackCollider: {fileID: 6235190095111702202}
 --- !u!1 &1928361155489330712
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2609855696658174491}
   - component: {fileID: 177076484478904675}
-  - component: {fileID: 6887835527132611062}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,19 +244,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &6887835527132611062
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009969910292410938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.7999997, y: 2.6599998, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6782131068475955740
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +256,7 @@ GameObject:
   m_Layer: 0
   m_Name: eyeSightPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -241,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6782131068475955740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: -0.25, z: 0}
+  m_LocalPosition: {x: 2.62, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2609855696658174491}
