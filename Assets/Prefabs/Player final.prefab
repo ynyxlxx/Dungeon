@@ -359,6 +359,10 @@ MonoBehaviour:
   startingHealth: 5
   maxHealth: 5
   beenHitForce: 3
+  playerHitPatricle: {fileID: 3064627646204223266, guid: 061b5f9f9f5668141b56a0b9727b7f93,
+    type: 3}
+  playerDeathParticle: {fileID: 2746035737030693152, guid: 2de765ee25c2fee44b90a1aab949546d,
+    type: 3}
 --- !u!114 &6906539783743973176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +380,8 @@ MonoBehaviour:
   weaponPrefabs: {fileID: 2215111875220300231, guid: c1a44e4258ff0f849aa18d253df9070b,
     type: 3}
   animator: {fileID: 8255887113004975607}
+  hitEffect: {fileID: 3064627646204223266, guid: 061b5f9f9f5668141b56a0b9727b7f93,
+    type: 3}
 --- !u!95 &8255887113004975607
 Animator:
   serializedVersion: 3

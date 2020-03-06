@@ -85,10 +85,8 @@ public class EnemyBehaviour : MonoBehaviour {
             attackTimer += Time.deltaTime;
             if (currentState == EnemyState.patrolling) {
                 //Debug.DrawLine (transform.position, new Vector3 (transform.position.x + viewRange, transform.position.y, transform.position.z), Color.red);
-
                 RaycastHit2D hitInfo = Physics2D.Raycast (eyeSightPoint.position, transform.right, viewRange, targetMask);
                 if (hitInfo.collider != null && hitInfo.collider.tag == "Player") {
-                    playerPos = hitInfo.collider.transform.position;
                     if (attackTimer > attackInterval) {
                         PrepareForAttack ();
                         attackTimer = 0;
@@ -100,6 +98,8 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     private void PrepareForAttack () {
+        RaycastHit2D hitInfo = Physics2D.Raycast (eyeSightPoint.position, transform.right, viewRange, targetMask);
+        playerPos = hitInfo.collider.transform.position;
         enemySprite.color = Color.red;
         currentState = EnemyState.attacking;
         StartCoroutine ("AttackThePlayer");
@@ -108,9 +108,9 @@ public class EnemyBehaviour : MonoBehaviour {
     private IEnumerator AttackThePlayer () {
         if (currentState == EnemyState.attacking) {
             float percent = 0;
-            attackCollider.enabled = true;
             Vector2 oldPos = transform.position;
             yield return new WaitForSeconds (0.4f);
+            attackCollider.enabled = true;
             while (percent < 1) {
                 percent += Time.deltaTime * attackSpeed;
                 float interpolation = Mathf.Pow (percent, 2) * 4f;
@@ -121,7 +121,6 @@ public class EnemyBehaviour : MonoBehaviour {
                 }
 
                 currentState = EnemyState.patrolling;
-
                 enemySprite.color = Color.white;
                 yield return null;
             }

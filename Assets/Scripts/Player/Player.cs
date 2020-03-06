@@ -16,6 +16,9 @@ public class Player : LivingEntity {
     private SpriteRenderer playerSprite;
     private PlayerController playerController;
 
+    public ParticleSystem playerHitPatricle;
+    public ParticleSystem playerDeathParticle;
+
     private void Awake () {
         rb = GetComponent<Rigidbody2D> ();
         playerSprite = GetComponent<SpriteRenderer> ();
@@ -37,6 +40,13 @@ public class Player : LivingEntity {
             StartCoroutine (ResetTheTimer ());
         }
         Debug.Log (health);
+    }
+
+    public override void Die () {
+        base.Die ();
+        CameraShake.ShakeOnce (1f, 2f);
+        ParticleSystem particle = Instantiate (playerDeathParticle, transform.position, Quaternion.identity);
+        Destroy (particle.gameObject, 1f);
     }
 
     private void HitAnime (Vector2 hitDirection) {

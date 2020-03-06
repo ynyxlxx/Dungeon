@@ -42,6 +42,8 @@ public class EnemyWeapon : MonoBehaviour {
     private void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Player") {
             other.gameObject.GetComponent<Player> ().TakeHit (damage, other.transform.position, transform.right);
+            ParticleSystem particle = Instantiate (other.GetComponent<Player> ().playerHitPatricle, other.transform.position, Quaternion.FromToRotation (Vector3.forward, transform.right));
+            Destroy (particle.gameObject, 2f);
             //Debug.Log (this + " hit the player");
         }
     }

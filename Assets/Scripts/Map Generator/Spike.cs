@@ -10,6 +10,8 @@ public class Spike : MonoBehaviour {
 
         if (other.collider.tag == "Player") {
             other.gameObject.GetComponent<Player> ().TakeHit (damage, other.transform.position, transform.up);
+            ParticleSystem particle = Instantiate (other.collider.GetComponent<Player> ().playerHitPatricle, other.transform.position, Quaternion.FromToRotation (Vector3.forward, transform.up));
+            Destroy (particle.gameObject, 2f);
         }
     }
 }

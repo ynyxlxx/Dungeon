@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour {
     private WeaponInfo playerWeapon;
 
     public Animator animator;
+    public ParticleSystem hitEffect;
 
     private void Awake () {
         playerWeapon = weaponPrefabs.GetComponent<WeaponInfo> ();
@@ -31,6 +32,9 @@ public class PlayerAttack : MonoBehaviour {
                     Enemy enemy = enemiesToDamage[i].GetComponent<Enemy> ();
                     if (enemy != null) {
                         enemy.TakeHit (playerWeapon.damage, enemy.transform.position, this.transform.right);
+                        Vector2 hitDir = enemy.transform.position - attackPos.position;
+                        ParticleSystem particle = Instantiate (hitEffect, enemy.transform.position, Quaternion.FromToRotation (Vector3.forward, hitDir));
+                        Destroy (particle.gameObject, 2f);
                         Debug.Log ($"hit the {enemy}, current health {enemy.health}");
                     }
                 }

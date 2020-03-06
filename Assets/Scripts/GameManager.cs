@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
         if (findThePlayer == true && playerInstance == null) {
             Debug.Log ("Game Over!!!");
             findThePlayer = false;
-            SceneManager.LoadScene ("GameScene");
+            //SceneManager.LoadScene ("GameScene");
         }
     }
 
