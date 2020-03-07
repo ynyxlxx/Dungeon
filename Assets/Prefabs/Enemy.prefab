@@ -118,7 +118,7 @@ MonoBehaviour:
   patrolSpeed: 1.8
   groundDetectionDistance: 1
   wallDetectionDistance: 0.2
-  viewRange: 1.5
+  viewRange: 0.8
   attackSpeed: 1.2
   attackInterval: 1.5
   groundDetectionPoint: {fileID: 8470437372544252284}

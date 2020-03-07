@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716513332532792839}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.378, y: -0.56, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7372774, w: 0.67559016}
+  m_LocalPosition: {x: 0.32, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6612513393683078638}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 95}
 --- !u!1 &6040646953032756842
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponHolder: {fileID: 5542113983064021771}
   attackPos: {fileID: 5913727290353887727}
-  weaponPrefabs: {fileID: 2215111875220300231, guid: c1a44e4258ff0f849aa18d253df9070b,
+  weaponPrefabs: {fileID: 2215111875220300231, guid: 07ff7e9c9b8fd9b47904d9f899a80186,
     type: 3}
   animator: {fileID: 8255887113004975607}
   hitEffect: {fileID: 3064627646204223266, guid: 061b5f9f9f5668141b56a0b9727b7f93,

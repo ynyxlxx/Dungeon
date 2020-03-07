@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Start () {
-        GameObject weaponInstance = Instantiate (weaponPrefabs, weaponHolder.position, weaponHolder.rotation);
+        GameObject weaponInstance = Instantiate (weaponPrefabs, weaponHolder.position, weaponPrefabs.transform.rotation);
         weaponInstance.transform.parent = weaponHolder;
     }
 
@@ -49,6 +49,16 @@ public class PlayerAttack : MonoBehaviour {
         if (!Application.isPlaying) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere (attackPos.position, playerWeapon.attackRange);
+    }
+
+    public void SetCurrentWeapon (GameObject newWeapon) {
+        for (int i = 0; i < weaponHolder.childCount; i++) {
+            Destroy (weaponHolder.GetChild (i).gameObject);
+        }
+
+        GameObject weaponInstance = Instantiate (newWeapon, weaponHolder.position, Quaternion.FromToRotation (Vector3.up, newWeapon.transform.up));
+        weaponInstance.transform.parent = weaponHolder;
+
     }
 
 }
