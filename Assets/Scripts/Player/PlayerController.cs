@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
 
     private bool facingRight = true;
+    public bool isFacingRight { get { return facingRight; } }
 
     private bool isGrounded;
     public Transform groundCheck;

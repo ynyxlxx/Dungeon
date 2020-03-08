@@ -13,8 +13,11 @@ public class PlayerStats : MonoBehaviour {
     private GameObject weaponPrefabA;
     private GameObject weaponPrefabB;
 
+    private float money;
+
     private void Awake () {
         _playerStats = this;
+        money = 0;
     }
 
     private void Start () {
@@ -46,4 +49,11 @@ public class PlayerStats : MonoBehaviour {
         weaponPrefabB = newWeapon;
     }
 
+    public void SetMoney (float _money) {
+        money = _money;
+    }
+
+    public float GetMoney () {
+        return money;
+    }
 }

@@ -75,4 +75,9 @@ public class Player : LivingEntity {
         }
         yield return null;
     }
+
+    public void IncrementTheHealth () {
+        health += 1;
+    }
+
 }

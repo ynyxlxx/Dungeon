@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Start () {
-        GameObject weaponInstance = Instantiate (weaponPrefabs, weaponHolder.position, weaponPrefabs.transform.rotation);
+        GameObject weaponInstance = Instantiate (weaponPrefabs, weaponHolder.position, Quaternion.FromToRotation (weaponPrefabs.transform.up, weaponHolder.transform.right));
         weaponInstance.transform.parent = weaponHolder;
     }
 
@@ -56,9 +56,15 @@ public class PlayerAttack : MonoBehaviour {
             Destroy (weaponHolder.GetChild (i).gameObject);
         }
 
-        GameObject weaponInstance = Instantiate (newWeapon, weaponHolder.position, Quaternion.FromToRotation (Vector3.up, newWeapon.transform.up));
-        weaponInstance.transform.parent = weaponHolder;
+        if (GetComponent<PlayerController> ().isFacingRight) {
+            GameObject weaponInstance = Instantiate (newWeapon, weaponHolder.position, Quaternion.FromToRotation (newWeapon.transform.up, weaponHolder.transform.right));
+            weaponInstance.transform.parent = weaponHolder;
+        } else {
+            GameObject weaponInstance = Instantiate (newWeapon, weaponHolder.position, Quaternion.FromToRotation (newWeapon.transform.up, -weaponHolder.transform.right));
+            weaponInstance.transform.parent = weaponHolder;
+        }
 
+        playerWeapon = newWeapon.GetComponent<WeaponInfo> ();
     }
 
 }
