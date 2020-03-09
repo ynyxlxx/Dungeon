@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour {
     public Transform climbCheck;
     private float climbCheckRadius = 0.1f;
 
+    [HideInInspector]
+    public bool isReadyToEnterNextLevel = false;
+
     private void Start () {
         rb = GetComponent<Rigidbody2D> ();
         extraJumpCounter = extraJumpTimes;
@@ -64,8 +67,16 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerStay2D (Collider2D other) {
         if (other.tag == "End Point") {
-            if (Input.GetKeyDown (KeyCode.E))
-                GameManager.instance.EnterNextLevel ();
+            TextDisplayManager.Instance.DisplayTheText ("Press E to Enter Next Level");
+            if (Input.GetKeyDown (KeyCode.E)) {
+                isReadyToEnterNextLevel = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D (Collider2D other) {
+        if (other.tag == "End Point") {
+            TextDisplayManager.Instance.HideTheText ();
         }
     }
 
@@ -73,4 +84,5 @@ public class PlayerController : MonoBehaviour {
         facingRight = !facingRight;
         transform.localScale = new Vector3 (transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
+
 }

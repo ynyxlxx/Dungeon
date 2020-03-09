@@ -12,6 +12,8 @@ public class Item : MonoBehaviour {
 
     private void Start () {
         posY = transform.position.y;
+        ParticleSystem particle = Instantiate (FloatingEffect, transform.position, Quaternion.identity);
+        particle.transform.parent = transform;
     }
 
     private void Update () {

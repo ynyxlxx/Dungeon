@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : LivingEntity {
 
     public static event System.Action OnDeathStatic;
+    public ParticleSystem particleEffect;
 
     protected override void Start () {
         base.Start ();
@@ -20,5 +21,11 @@ public class Enemy : LivingEntity {
 
         }
         base.TakeHit (damage, hitPoint, hitDirection);
+    }
+
+    public override void Die () {
+        ParticleSystem instance = Instantiate (particleEffect, transform.position, Quaternion.identity);
+        Destroy (instance, 2f);
+        base.Die ();
     }
 }

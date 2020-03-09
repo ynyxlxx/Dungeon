@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hint: 
-  FloatingEffect: {fileID: 0}
+  FloatingEffect: {fileID: 8141549192031859064, guid: cfb9365156a43154e8a5cab7f9279909,
+    type: 3}
   moveDistance: 0.2
   floatingSpeed: 1
   coinValue: 10

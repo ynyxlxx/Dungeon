@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  particleEffect: {fileID: 2746035737030693152, guid: 2de765ee25c2fee44b90a1aab949546d,
+    type: 3}
 --- !u!114 &114556067182315076
 MonoBehaviour:
   m_ObjectHideFlags: 0

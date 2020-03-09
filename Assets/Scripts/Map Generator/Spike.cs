@@ -6,7 +6,7 @@ public class Spike : MonoBehaviour {
 
     public float damage = 1f;
 
-    private void OnCollisionEnter2D (Collision2D other) {
+    private void OnCollisionStay2D (Collision2D other) {
 
         if (other.collider.tag == "Player") {
             other.gameObject.GetComponent<Player> ().TakeHit (damage, other.transform.position, transform.up);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,18 @@ public class PlayerStats : MonoBehaviour {
     private GameObject weaponPrefabA;
     private GameObject weaponPrefabB;
 
+    public static event Action OnWeaponChanged;
+
     private float money;
 
     private void Awake () {
-        _playerStats = this;
-        money = 0;
+        if (_playerStats != null && _playerStats != this) {
+            Destroy (this.gameObject);
+        } else {
+            _playerStats = this;
+        }
+
+        money = 10f;
     }
 
     private void Start () {
@@ -33,12 +41,15 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public GameObject GetCurrentWeaponA () {
-        print (weaponPrefabA);
+        print ("get the current weapon " + weaponPrefabA);
         return weaponPrefabA;
     }
 
     public void SetCurrentWeaponA (GameObject newWeapon) {
         weaponPrefabA = newWeapon;
+        if (OnWeaponChanged != null) {
+            OnWeaponChanged ();
+        }
     }
 
     public GameObject GetCurrentWeaponB () {
