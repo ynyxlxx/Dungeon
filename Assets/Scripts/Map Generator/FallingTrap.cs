@@ -43,7 +43,7 @@ public class FallingTrap : MonoBehaviour {
             transform.position = Vector2.Lerp (transform.position, groundCheck.point + Vector2.down, percent);
         }
 
-        if (timer >= 1) {
+        if (timer >= 2f) {
             Destroy (this.gameObject);
         }
     }

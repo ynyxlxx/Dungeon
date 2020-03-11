@@ -16,4 +16,8 @@ public class InventoryUI : MonoBehaviour {
         WeaponInfo currentWeapon = PlayerStats.Instance.GetCurrentWeaponA ().GetComponent<WeaponInfo> ();
         weaponSlot.sprite = currentWeapon.weaponSprite;
     }
+
+    private void OnDestroy () {
+        PlayerStats.OnWeaponChanged -= ChangeTheWeaponSprite;
+    }
 }

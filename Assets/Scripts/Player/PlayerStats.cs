@@ -16,6 +16,9 @@ public class PlayerStats : MonoBehaviour {
 
     public static event Action OnWeaponChanged;
 
+    public bool _firstInitial = true;
+
+    [SerializeField]
     private float money;
 
     private void Awake () {
@@ -25,17 +28,21 @@ public class PlayerStats : MonoBehaviour {
             _playerStats = this;
         }
 
-        money = 10f;
+        money = 50f;
     }
 
     private void Start () {
-        weaponInitialize ();
+        if (_firstInitial) {
+            weaponInitialize ();
+        }
+
         DontDestroyOnLoad (this);
     }
 
     private void weaponInitialize () {
         if (weaponPrefabA == null) {
             weaponPrefabA = WeaponContainer.weaponDict["Sword"];
+            _firstInitial = false;
             //print (weaponPrefabA);
         }
     }

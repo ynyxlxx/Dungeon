@@ -32,6 +32,7 @@ public class Player : LivingEntity {
 
     public override void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection) {
         if (isInvincible == false) {
+            AudioManager.Instance.Play ("playerHit");
             base.TakeHit (damage, hitPoint, hitDirection);
             this.tag = "Untagged";
             HitAnime (hitDirection);
@@ -44,6 +45,7 @@ public class Player : LivingEntity {
 
     public override void Die () {
         base.Die ();
+        AudioManager.Instance.Play ("playerDeath");
         CameraShake.ShakeOnce (1f, 2f);
         ParticleSystem particle = Instantiate (playerDeathParticle, transform.position, Quaternion.identity);
         Destroy (particle.gameObject, 1f);

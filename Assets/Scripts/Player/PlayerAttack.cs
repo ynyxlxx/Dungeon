@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Start () {
+        weaponPrefabs = PlayerStats.Instance.GetCurrentWeaponA ();
+        playerWeapon = weaponPrefabs.GetComponent<WeaponInfo> ();
         GameObject weaponInstance = Instantiate (weaponPrefabs, weaponHolder.position, Quaternion.FromToRotation (weaponPrefabs.transform.up, weaponHolder.transform.right));
         weaponInstance.transform.parent = weaponHolder;
     }

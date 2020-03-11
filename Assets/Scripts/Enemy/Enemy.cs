@@ -18,12 +18,13 @@ public class Enemy : LivingEntity {
             if (OnDeathStatic != null) {
                 OnDeathStatic ();
             }
-
         }
+        AudioManager.Instance.Play ("enemyHit");
         base.TakeHit (damage, hitPoint, hitDirection);
     }
 
     public override void Die () {
+        AudioManager.Instance.Play ("playerDeath");
         ParticleSystem instance = Instantiate (particleEffect, transform.position, Quaternion.identity);
         Destroy (instance, 2f);
         base.Die ();

@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour {
             Destroy (this.gameObject);
         }
 
-        DontDestroyOnLoad (this);
     }
 
     private void Update () {
@@ -41,6 +40,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log ("Game Over!!!");
             findThePlayer = false;
             //StartCoroutine (LoadScene ());
+            PlayerStats.Instance._firstInitial = true;
             gameOverUI.gameObject.SetActive (true);
         }
 

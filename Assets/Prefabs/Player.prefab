@@ -564,6 +564,7 @@ MonoBehaviour:
     m_Bits: 512
   extraJumpTimes: 1
   climbCheck: {fileID: 5159722653557941639}
+  isReadyToEnterNextLevel: 0
 --- !u!114 &5556333602647755688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,9 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f02cd27a7fbf45b7f8cb0055438e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10
+  startingHealth: 5
   maxHealth: 10
-  beenHitForce: 2.5
+  beenHitForce: 3
   playerHitPatricle: {fileID: 3064627646204223266, guid: 061b5f9f9f5668141b56a0b9727b7f93,
     type: 3}
   playerDeathParticle: {fileID: 2746035737030693152, guid: 2de765ee25c2fee44b90a1aab949546d,

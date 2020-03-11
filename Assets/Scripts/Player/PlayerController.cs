@@ -42,9 +42,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Input.GetKeyDown (KeyCode.Space) && extraJumpCounter > 0) {
+            AudioManager.Instance.Play ("jump");
             rb.velocity = Vector2.up * jumpForce;
             extraJumpCounter--;
         } else if (Input.GetKeyDown (KeyCode.Space) && extraJumpCounter == 0 && isGrounded) {
+            AudioManager.Instance.Play ("jump");
             rb.velocity = Vector2.up * jumpForce;
         }
 
